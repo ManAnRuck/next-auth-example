@@ -75,10 +75,12 @@ const database = "test";
 export const clientPromise = new Promise<ExperimentalSurrealHTTP<typeof fetch>>(
   async (resolve, reject) => {
     try {
-      const db = new ExperimentalSurrealHTTP(connectionString, {
+      const db = new ExperimentalSurrealHTTP({
         fetch,
-        ns: namespace,
-        db: database,
+      });
+      await db.connect(`${connectionString}`, {
+        namespace,
+        database,
       });
       resolve(db);
     } catch (e) {

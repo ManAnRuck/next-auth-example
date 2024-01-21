@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@auth/surrealdb-adapter':
-    specifier: ^0.2.10
-    version: 0.2.10(surrealdb.js@0.9.1)
+    specifier: file:/Users/manuelruck/Work/Tower/next-auth/packages/adapter-surrealdb
+    version: file:../next-auth/packages/adapter-surrealdb(surrealdb.js@0.11.0)
   '@radix-ui/react-avatar':
     specifier: ^1.0.3
     version: 1.0.4(@types/react-dom@18.2.18)(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)
@@ -45,8 +45,8 @@ dependencies:
     specifier: ^18.2.0
     version: 18.2.0(react@18.2.0)
   surrealdb.js:
-    specifier: ^0.9.1
-    version: 0.9.1
+    specifier: ^0.11.0
+    version: 0.11.0
   tailwind-merge:
     specifier: ^1.14.0
     version: 1.14.0
@@ -115,17 +115,6 @@ packages:
       oauth4webapi: 2.7.0
       preact: 10.11.3
       preact-render-to-string: 5.2.3(preact@10.11.3)
-    dev: false
-
-  /@auth/surrealdb-adapter@0.2.10(surrealdb.js@0.9.1):
-    resolution: {integrity: sha512-JRm5xt4AxRzTbNejIf+jOEQRI+yGxc0HqhDnFGeyYa8tR0YOdzkyAjMY3m1hEcYCpPmVGmQ4nXbYBQOwIBq9fQ==}
-    peerDependencies:
-      surrealdb.js: ^0.9.1
-    dependencies:
-      '@auth/core': 0.22.0
-      surrealdb.js: 0.9.1
-    transitivePeerDependencies:
-      - nodemailer
     dev: false
 
   /@babel/runtime@7.23.8:
@@ -1720,11 +1709,12 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
 
-  /surrealdb.js@0.9.1:
-    resolution: {integrity: sha512-Lw7gds+u5966ng00/yOOkeW90VFj2tI5YNZ1cY7t9fyl9yEEcrFOkR5djqXwuJ1V3ORVORP5l+Hv2N6Sfgh5PQ==}
+  /surrealdb.js@0.11.0:
+    resolution: {integrity: sha512-x/Qd0UYyNilwY27JZlWgP8NsCdBzDtextRzP9oIm7xO27qsZvE5Rh4wnYN0xD68zgRAE4W8Jsufbm+hKbaGsTg==}
     dependencies:
       unws: 0.2.4(ws@8.16.0)
       ws: 8.16.0
+      zod: 3.22.4
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
@@ -1899,3 +1889,20 @@ packages:
   /yaml@2.3.4:
     resolution: {integrity: sha512-8aAvwVUSHpfEqTQ4w/KMlf3HcRdt50E5ODIQJBw1fQ5RL34xabzxtUlzTXVqc4rkZsPbvrXKWnABCD7kWSmocA==}
     engines: {node: '>= 14'}
+
+  /zod@3.22.4:
+    resolution: {integrity: sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==}
+    dev: false
+
+  file:../next-auth/packages/adapter-surrealdb(surrealdb.js@0.11.0):
+    resolution: {directory: ../next-auth/packages/adapter-surrealdb, type: directory}
+    id: file:../next-auth/packages/adapter-surrealdb
+    name: '@auth/surrealdb-adapter'
+    peerDependencies:
+      surrealdb.js: ^0.11.0
+    dependencies:
+      '@auth/core': 0.22.0
+      surrealdb.js: 0.11.0
+    transitivePeerDependencies:
+      - nodemailer
+    dev: false
