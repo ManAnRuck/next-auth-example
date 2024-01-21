@@ -1,4 +1,4 @@
-import NextAuth from "next-auth"
+import NextAuth from "next-auth";
 
 // import Apple from "next-auth/providers/apple"
 // import Atlassian from "next-auth/providers/atlassian"
@@ -22,7 +22,7 @@ import NextAuth from "next-auth"
 // import Foursquare from "next-auth/providers/foursquare"
 // import Freshbooks from "next-auth/providers/freshbooks"
 // import Fusionauth from "next-auth/providers/fusionauth"
-import GitHub from "next-auth/providers/github"
+import GitHub from "next-auth/providers/github";
 // import Gitlab from "next-auth/providers/gitlab"
 // import Google from "next-auth/providers/google"
 // import Hubspot from "next-auth/providers/hubspot"
@@ -63,12 +63,47 @@ import GitHub from "next-auth/providers/github"
 // import Zoho from "next-auth/providers/zoho"
 // import Zoom from "next-auth/providers/zoom"
 
-import type { NextAuthConfig } from "next-auth"
+import type { NextAuthConfig } from "next-auth";
+import { SurrealDBAdapter } from "@auth/surrealdb-adapter";
+import Surreal, { ExperimentalSurrealHTTP } from "surrealdb.js";
+
+const connectionString = "http://192.168.0.166:8000";
+
+const namespace = "test";
+const database = "test";
+
+export const clientPromise = new Promise<ExperimentalSurrealHTTP<typeof fetch>>(
+  async (resolve, reject) => {
+    try {
+      const db = new ExperimentalSurrealHTTP(connectionString, {
+        fetch,
+        ns: namespace,
+        db: database,
+      });
+      resolve(db);
+    } catch (e) {
+      reject(e);
+    }
+  }
+);
+
+// const clientPromise = new Promise<Surreal>(async (resolve, reject) => {
+//   const db = new Surreal();
+//   try {
+//     await db.connect(`${connectionString}/rpc`, {
+//       ns: namespace, db:database
+//     })
+//     resolve(db)
+//   } catch (e) {
+//     reject(e)
+//   }
+// })
 
 export const config = {
   theme: {
     logo: "https://next-auth.js.org/img/logo/logo-sm.png",
   },
+  adapter: SurrealDBAdapter(clientPromise),
   providers: [
     // Apple,
     // Atlassian,
@@ -135,11 +170,11 @@ export const config = {
   ],
   callbacks: {
     authorized({ request, auth }) {
-      const { pathname } = request.nextUrl
-      if (pathname === "/middleware-example") return !!auth
-      return true
+      const { pathname } = request.nextUrl;
+      if (pathname === "/middleware-example") return !!auth;
+      return true;
     },
   },
-} satisfies NextAuthConfig
+} satisfies NextAuthConfig;
 
-export const { handlers, auth, signIn, signOut } = NextAuth(config)
+export const { handlers, auth, signIn, signOut } = NextAuth(config);

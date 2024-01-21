@@ -1,3 +1,14 @@
+# Issue reproduction
+
+```
+pnpm i
+pnpm db:start
+# new terminal
+pnpm dev
+```
+
+try to login
+
 > The example repository is maintained from a [monorepo](https://github.com/nextauthjs/next-auth/tree/main/apps/examples/nextjs). Pull Requests should be opened against [`nextauthjs/next-auth`](https://github.com/nextauthjs/next-auth).
 
 <p align="center">
